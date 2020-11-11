@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+.jumbotron{
+  background-image: url('https://i.pinimg.com/originals/8e/b4/39/8eb4398ca2d8ec486549553f0e20de73.jpg');
+  background-size: cover;
+  height: 100%;}
