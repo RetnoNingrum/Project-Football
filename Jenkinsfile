@@ -2,10 +2,26 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage ('Build') { 
             steps {
-                sh 'make' 
-                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true 
+                // install required gems
+                sh 'bundle install'
+
+                // build and run tests with coverage
+                sh 'bundle exec rake build spec'
+
+                // Archive the built artifacts
+                archive includes: 'pkg/*.gem'
+
+                // publish html
+                publishHTML target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: 'coverage',
+                    reportFiles: 'index.html',
+                    reportName: 'RCov Report'
+                ]
             }
         }
         stage('Test') {
