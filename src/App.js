@@ -11,7 +11,7 @@ function App() {
     <div className="wrapper">
       <Router>
         <Switch>
-          <Route exact path="/home" component={home} />
+          <Route exact path="/" component={home} />
           <Route exact path="/league" component={league} />
           <Route exact path="/team" component={team} />
         </Switch>
